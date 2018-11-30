@@ -9,7 +9,7 @@ const AddClientForm = props => {
         <label>Company Name</label>
         <div>
           <Field
-            name="companyName"
+            name="client_name"
             component="input"
             type="text"
             placeholder="Company Name"
@@ -20,7 +20,7 @@ const AddClientForm = props => {
         <label>Email</label>
         <div>
           <Field
-            name="email"
+            name="client_email"
             component="input"
             type="email"
             placeholder="Email"
@@ -30,7 +30,9 @@ const AddClientForm = props => {
       <div>
         <label>Address</label>
         <div>
-          <Field name="address" component="textarea" />
+          <Field name="client_address"
+            component="textarea"
+          />
         </div>
       </div>
       <div>
