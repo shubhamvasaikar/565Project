@@ -8,6 +8,7 @@ const Header = () => (
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/generateInv'>Generate Invoice</Link></li>
           <li><Link to='/viewInv'>View Invoice</Link></li>
+          <li><Link to='/addClients'>Add Clients</Link></li>
           <li><Link to='/editProducts'>Edit Products</Link></li>
           <li><Link to='/viewProducts'>View Products</Link></li>
         </ul>

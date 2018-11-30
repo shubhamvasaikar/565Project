@@ -7,9 +7,9 @@ import Main from '../src/component/SideLinkMain'
 class App extends Component {
   render() {
     return (
-      <div> 
-        <Main/>
+      <div>
         <Header/>
+        <Main/>
         
       </div>
     );
