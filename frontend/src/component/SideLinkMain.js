@@ -6,11 +6,13 @@ import AddClient from './Client/AddClient'
 
 const Main = () => (
     <main>
-        <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/generateInv' component={GenerateInvoice}/>
-        <Route path='/addClients' component={AddClient}/>
-        </Switch>
+        <div className="container">
+            <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/generateInv' component={GenerateInvoice}/>
+            <Route path='/addClients' component={AddClient}/>
+            </Switch>
+        </div>
     </main>    
 )
 

@@ -7,37 +7,37 @@ const AddClientForm = props => {
     <form onSubmit={handleSubmit}>
       <div>
         <label>Company Name</label>
-        <div>
+        <div className="row">
           <Field
             name="client_name"
             component="input"
             type="text"
-            placeholder="Company Name"
           />
         </div>
       </div>
-      <div>
+      <div className="row">
         <label>Email</label>
         <div>
           <Field
             name="client_email"
             component="input"
             type="email"
-            placeholder="Email"
           />
         </div>
       </div>
-      <div>
+      <div className="row">
         <label>Address</label>
         <div>
-          <Field name="client_address"
+          <Field
+            className="materialize-textarea"
+            name="client_address"
             component="textarea"
           />
         </div>
       </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+      <div className="row">
+        <button className="btn waves-effect waves-light" type="submit" disabled={pristine || submitting}>Submit</button>
+        <button className="btn waves-effect waves-light" type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
         </button>
       </div>
