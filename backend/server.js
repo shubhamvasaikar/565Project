@@ -28,6 +28,29 @@ server.post('/addClient', function(req, res) {
       }
     }
   );
+  res.status(200);
+  res.end();
+
+  connection.end();
+});
+
+server.post('/addProduct', function(req, res) {
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  connection.query(
+    'INSERT INTO products SET ?',
+    req.body,
+    function(err, results, fields) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+    }
+  );
+
+  res.status(200);
+  res.end();
 
   connection.end();
 });
