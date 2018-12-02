@@ -55,5 +55,33 @@ server.post('/addProduct', function(req, res) {
   connection.end();
 });
 
+server.get('/clients', function(req, res) {
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  var data = null;
+
+  connection.query(
+    'SELECT * FROM clients',
+    function(err, results, fields) {
+      if (err) throw err;
+      data = JSON.parse(JSON.stringify(results));
+      res.json(200, data);
+    }
+  );
+
+  connection.end();
+});
+
+// server.post('/updateClients', function(req, res) {
+//   console.log(req.body);
+//   var connection = mysql.createConnection(mysqlParams);
+//   connection.connect();
+
+//   connection.query();
+
+// });
+
+
 server.listen(8000);
 // connection.end();
