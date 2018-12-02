@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 // Import React Table
 import ReactTable from "react-table";
@@ -13,12 +14,12 @@ class Client extends React.Component {
     };
     this.renderEditable = this.renderEditable.bind(this);
   }
-  componentDidMount () { 
+  componentDidMount() {
     axios.get('http://localhost:8000/clients')
-        .then(res => {
-            console.log("res");
-            this.setState({data: res.data});
-        });
+      .then(res => {
+        console.log("res");
+        this.setState({ data: res.data });
+      });
   }
   renderEditable(cellInfo) {
     return (
@@ -44,33 +45,38 @@ class Client extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <ReactTable
-          data={data}
-          columns={[
-            {
+        <div style={{ padding: 15 }} className='row'>
+          <Link to='/addClient' className="btn waves-effect waves-light">Add a new client</Link>
+        </div>
+        <div style={{ padding: 15 }} className='row'>
+          <ReactTable
+            data={data}
+            columns={[
+              {
                 Header: "ID",
                 accessor: "client_id"
-            },
-            {
-              Header: "Client Name",
-              accessor: "client_name",
-              Cell: this.renderEditable
-            },
-            {
-              Header: "Client Email",
-              accessor: "client_email",
-              Cell: this.renderEditable
-            },
-            {
-              Header: "Client Address",
-              accessor: "client_address",
-              Cell: this.renderEditable
-            }
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
-        <br />
+              },
+              {
+                Header: "Client Name",
+                accessor: "client_name",
+                Cell: this.renderEditable
+              },
+              {
+                Header: "Client Email",
+                accessor: "client_email",
+                Cell: this.renderEditable
+              },
+              {
+                Header: "Client Address",
+                accessor: "client_address",
+                Cell: this.renderEditable
+              }
+            ]}
+            defaultPageSize={10}
+            className="-striped -highlight"
+          />
+          <br />
+        </div>
       </div>
     );
   }
