@@ -48,9 +48,8 @@ class Client extends React.Component {
           data={data}
           columns={[
             {
-                Header: "Client ID",
-                accessor: "client_id",
-                Cell: this.renderEditable
+                Header: "ID",
+                accessor: "client_id"
             },
             {
               Header: "Client Name",
@@ -60,6 +59,11 @@ class Client extends React.Component {
             {
               Header: "Client Email",
               accessor: "client_email",
+              Cell: this.renderEditable
+            },
+            {
+              Header: "Client Address",
+              accessor: "client_address",
               Cell: this.renderEditable
             }
           ]}

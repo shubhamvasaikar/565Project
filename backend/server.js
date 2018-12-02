@@ -73,14 +73,25 @@ server.get('/clients', function(req, res) {
   connection.end();
 });
 
-// server.post('/updateClients', function(req, res) {
-//   console.log(req.body);
-//   var connection = mysql.createConnection(mysqlParams);
-//   connection.connect();
+server.post('/updateClients', function(req, res) {
+  console.log(req.body);
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
 
-//   connection.query();
+  connection.query(
+    'UPDATE clients \
+    SET client_name = ?, client_email = ?, client_address = ? \
+    WHERE client_id = ?',
+    [req.body.client_name, req.body.client_email, req.body.client_address, req.body.client_id],
+    function (err, results, fields) {
+      res.status(200);
+      res.end();
+    }
+  );
 
-// });
+  connection.end();
+
+});
 
 
 server.listen(8000);
