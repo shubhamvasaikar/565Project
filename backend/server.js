@@ -112,7 +112,6 @@ server.get('/products', function(req, res) {
 });
 
 server.post('/generateInvoice', function(req, res) {
-  console.log(req.body);
   var client_id = parseInt(req.body.clientACvalue.split(' - ')[0]);
   var invoice = {
     client_id: parseInt(req.body.clientACvalue.split(' - ')[0]),
@@ -161,6 +160,23 @@ server.post('/generateInvoice', function(req, res) {
 
   //connection.end();
 
+});
+
+server.get('/invoices', function(req, res) {
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  connection.query(
+    'SELECT c.client_name, c.client_email, \
+    i.invoice_id, i.date, i.total FROM clients as c \
+    JOIN invoices AS i ON c.client_id = i.client_id',
+    function(err, results, fields) {
+      if (err) throw err;
+      res.status(201 - 1).json(JSON.parse(JSON.stringify(results)));
+    }
+  );
+
+  connection.end();
 });
 
 server.listen(8000);
