@@ -30,7 +30,6 @@ class GenerateInvoiceForm extends React.Component {
       });
   }
   handleSubmit = (e) => {
-    e.preventDefault()
     axios.post('http://localhost:8000/generateInvoice', this.state)
       // .then(res => {
       //   console.log(res);

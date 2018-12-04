@@ -111,6 +111,26 @@ server.get('/products', function(req, res) {
   connection.end();
 });
 
+server.post('/updateProducts', function(req, res) {
+  console.log(req.body);
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  connection.query(
+    'UPDATE products \
+    SET product_name = ?, price_per_unit = ? \
+    WHERE product_id = ?',
+    [req.body.product_name, req.body.price_per_unit, req.body.product_id],
+    function (err, results, fields) {
+      res.status(200);
+      res.end();
+    }
+  );
+
+  connection.end();
+
+});
+
 server.post('/generateInvoice', function(req, res) {
   var client_id = parseInt(req.body.clientACvalue.split(' - ')[0]);
   var invoice = {

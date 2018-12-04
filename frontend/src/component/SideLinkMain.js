@@ -7,6 +7,7 @@ import InvoiceDetails from './Invoice/InvoiceDetails'
 import Client from './Client/Clients'
 import AddClient from './Client/AddClient'
 import AddProductForm from './Product/AddProduct'
+import Product from './Product/Products';
 
 const Main = () => (
     <main>
@@ -18,7 +19,8 @@ const Main = () => (
             <Route path='/invoiceDetails/:id' component={InvoiceDetails}/>
             <Route path='/clients' component={Client}/>
             <Route path='/addClient' component={AddClient}/>
-            <Route path='/addProducts' component={AddProductForm}/>
+            <Route path='/products' component={Product}/>
+            <Route path='/addProduct' component={AddProductForm}/>
             </Switch>
         </div>
     </main>    
