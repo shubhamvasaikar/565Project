@@ -93,6 +93,23 @@ server.post('/updateClients', function(req, res) {
 
 });
 
+server.get('/products', function(req, res) {
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  var data = null;
+
+  connection.query(
+    'SELECT * FROM products',
+    function(err, results, fields) {
+      if (err) throw err;
+      data = JSON.parse(JSON.stringify(results));
+      res.json(200, data);
+    }
+  );
+
+  connection.end();
+});
 
 server.listen(8000);
 // connection.end();

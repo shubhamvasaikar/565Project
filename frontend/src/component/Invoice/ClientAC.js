@@ -15,12 +15,11 @@ class ClientAC extends React.Component {
     return (
         <Autocomplete
           value={this.state.value}
-          inputProps={{ name: 'client_name' }}
+          inputProps={{ id: 'client_name', name: 'client_name' }}
           wrapperStyle={{ position: 'relative', display: 'block' }}
           items={this.state.data}
-          getItemValue={(item) => item.client_name}
+          getItemValue={(item) => item.client_id + ' - ' + item.client_name}
           onChange={(event, value) => {
-              console.log(event);
               this.setState({ value })
             }
           }
@@ -29,16 +28,11 @@ class ClientAC extends React.Component {
               this.setState({ value })
             }
           }
-          // renderMenu={children => (
-          //   <div className="menu">
-          //     {children}
-          //   </div>
-          // )}
           renderItem={(item, isHighlighted) => (
             <div
               className={{ background: isHighlighted ? 'lightgray' : 'white' }}
               key={item.client_id}
-            >{item.client_name}</div>
+            >{item.client_id + ' - ' + item.client_name}</div>
           )}
         />
     )
