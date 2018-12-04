@@ -12,11 +12,12 @@ class GenerateInvoiceForm extends React.Component {
     productData: [],
     clientData: [],
     clientACvalue: "",
-    productACvalue: ""
+    productACvalue: "",
+    date: new Date().toLocaleDateString(),
+    total: 0
   }
   componentDidMount() {
-    const date = new Date().toLocaleDateString()
-    $("#date").attr('value', date);
+    $("#date").attr('value', this.state.date);
 
     axios.get('http://localhost:8000/clients')
       .then(res => {
@@ -29,19 +30,23 @@ class GenerateInvoiceForm extends React.Component {
       });
   }
   handleSubmit = (e) => {
-    console.log("onSubmitwa")
-    console.log(this.state)
+    e.preventDefault()
+    axios.post('http://localhost:8000/generateInvoice', this.state)
+      // .then(res => {
+      //   console.log(res);
+      // })
   }
   addProduct = (e) => { 
     e.preventDefault()
-    this.setState((prevState) => ({
-        products: [...prevState.products, {details:"", quantity:0, cost:0}]
-      })
-    );
     const total = this.state.products.reduce((acc, product) => {
       return acc + parseFloat(product.cost)
     }, 0);
     $("#total").attr('value', total);
+    this.setState((prevState) => ({
+        products: [...prevState.products, {details:"", quantity:0, cost:0}],
+        total: total
+      })
+    );
   }
   handleChange = (e) => {
     if (["details", "quantity", "cost"].includes(e.target.className) ) {

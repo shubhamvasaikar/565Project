@@ -111,5 +111,57 @@ server.get('/products', function(req, res) {
   connection.end();
 });
 
+server.post('/generateInvoice', function(req, res) {
+  console.log(req.body);
+  var client_id = parseInt(req.body.clientACvalue.split(' - ')[0]);
+  var invoice = {
+    client_id: parseInt(req.body.clientACvalue.split(' - ')[0]),
+    date: req.body.date,
+    total: req.body.total
+  }
+  var invoiceID = 0;
+
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  connection.query(
+    'INSERT INTO invoices SET ?',
+    invoice,
+    function(err, results, fields) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      invoiceID = results.insertId;
+      var invoice_details = [];
+      req.body.products.forEach(function (product) {
+        if (product.details !== "") {
+          invoice_details.push([
+            parseInt(product.details.split(' - ')[0]),
+            client_id,
+            invoiceID,
+            parseInt(product.quantity)
+          ]);
+        }
+      });
+      connection.query(
+        'INSERT INTO invoice_details(product_id, client_id, invoice_id, quantity) VALUES ?',
+        [invoice_details],
+        function(err, results, fields) {
+          if (err) throw err;
+        }
+      );
+
+      connection.end();
+    }
+  );
+
+  res.status(200);
+  res.end();
+
+  //connection.end();
+
+});
+
 server.listen(8000);
 // connection.end();
