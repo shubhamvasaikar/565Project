@@ -16,7 +16,6 @@ class Invoice extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:8000/invoices')
       .then(res => {
-        console.log("res");
         this.setState({ data: res.data });
       });
   }
@@ -52,7 +51,7 @@ class Invoice extends React.Component {
                 Header: "",
                 Cell: row => (
                   <Link 
-                    to={`/addClient/${data[row.index].invoice_id}`} 
+                    to={`/invoiceDetails/${data[row.index].invoice_id}`} 
                     className="btn-small waves-effect waves-light"
                   >
                     View Details

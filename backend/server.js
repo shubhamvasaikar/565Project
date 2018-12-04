@@ -179,5 +179,28 @@ server.get('/invoices', function(req, res) {
   connection.end();
 });
 
+server.post('/invoiceDetails', function(req,res) {
+  var connection = mysql.createConnection(mysqlParams);
+  connection.connect();
+
+  connection.query(
+    "SELECT c.client_id, c.client_name, c.client_address, c.client_email, \
+    i.invoice_id, i.date, i.total,\
+    p.product_id, p.product_name, p.price_per_unit, \
+    d.quantity, (d.quantity * p.price_per_unit) as cost \
+    FROM clients AS c \
+    JOIN invoices AS i ON c.client_id = i.client_id \
+    JOIN invoice_details AS d ON i.invoice_id = d.invoice_id \
+    JOIN products AS p ON p.product_id = d.product_id \
+    WHERE d.invoice_id = " + req.body.id,
+    function(err, results, fields) {
+      if (err) throw err;
+      res.status(200).json(JSON.parse(JSON.stringify(results)));
+    }
+  );
+
+  connection.end();
+})
+
 server.listen(8000);
 // connection.end();
