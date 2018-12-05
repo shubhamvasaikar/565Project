@@ -53,6 +53,7 @@ class Client extends React.Component {
         <div className='row'>
           <ReactTable
             data={data}
+            filterable
             columns={[
               {
                 Header: "ID",

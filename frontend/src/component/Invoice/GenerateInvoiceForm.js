@@ -83,6 +83,11 @@ class GenerateInvoiceForm extends React.Component {
                   key={item.client_id}
                 >{item.client_name}</div>
               )}
+              shouldItemRender={(item, value) => {
+                return (
+                  item.client_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+                )}
+              }
             />
             </div>
           </div>
@@ -133,6 +138,11 @@ class GenerateInvoiceForm extends React.Component {
                       key={item.product_id}
                     >{item.product_id + ' - ' + item.product_name}</div>
                   )}
+                  shouldItemRender={(item, value) => {
+                    return (
+                      item.product_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+                    )}
+                  }
                 />
               </div>
               <div className="col s3">
@@ -188,7 +198,7 @@ class GenerateInvoiceForm extends React.Component {
           </div>
         </div>  
         <div className="row">
-          <button className="btn waves-effect waves-light" type="submit">Submit</button>
+          <button className="btn btn-large waves-effect waves-light" type="submit">Submit</button>
         </div>
       </form>
     );

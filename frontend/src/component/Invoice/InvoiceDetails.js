@@ -23,21 +23,23 @@ class InvoiceDetails extends React.Component {
       <div style={{ padding: 15 }}>
         <div className="row">
           <div className="col s4">
-            <p>Invoice ID: {data[0].invoice_id}</p>
+            <h5>Invoice ID: {data[0].invoice_id}</h5>
           </div>
-          <div className="col s4 offset-s4">
-            <p>Invoice Date: {data[0].date}</p>
+          <div className="col s4 offset-s4 right-align">
+            <h5>Invoice Date: {data[0].date}</h5>
           </div>
         </div>
         <div className="row">
           <div className="col s4">
-            <p>Client Name: {data[0].client_name}</p>
+            <h5>Client Name: {data[0].client_name}</h5>
           </div>
-          <div className="col s4">
+          <div className="col s6 offset-s2 right-align">
+            <h5>Client E-mail: {data[0].client_email}</h5>
+          </div>
+        </div>
+        <div className="row">
+          <div className="center-align">
             <p>Client Address: {data[0].client_address}</p>
-          </div>
-          <div className="col s4">
-            <p>Client E-mail: {data[0].client_email}</p>
           </div>
         </div>
           <ReactTable
@@ -72,7 +74,14 @@ class InvoiceDetails extends React.Component {
             ]}
             defaultPageSize={10}
             className="-striped -highlight"
+            showPagination={false}
+            minRows={0}
           />
+          <div className="row">
+            <div className="col s10 offset-s10">
+              <h5>Total: {data[0].total}</h5>
+            </div>
+          </div>
       </div>
     )
   }
