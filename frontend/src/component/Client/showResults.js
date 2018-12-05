@@ -8,5 +8,7 @@ export default (async function submit(values) {
       console.log(res);
       console.log(res.data);
     });
+
+  window.location.replace('/clients');
   
 });

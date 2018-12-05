@@ -45,23 +45,29 @@ class InvoiceDetails extends React.Component {
             columns={[
               {
                 Header: "Product ID",
-                accessor: "product_id"
+                accessor: "product_id",
+                style: { textAlign: "center" },
+                maxWidth: 100
               },
               {
                 Header: "Product Name",
-                accessor: "product_name"
+                accessor: "product_name",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Price per unit",
                 accessor: "price_per_unit",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Quantity",
                 accessor: "quantity",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Cost",
                 accessor: "cost",
+                style: { textAlign: "center" }
               }
             ]}
             defaultPageSize={10}

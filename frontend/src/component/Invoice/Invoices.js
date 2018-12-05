@@ -34,26 +34,33 @@ class Invoice extends React.Component {
             columns={[
               {
                 Header: "ID",
-                accessor: "invoice_id"
+                accessor: "invoice_id",
+                style: { textAlign: "center" },
+                maxWidth: 100
               },
               {
                 Header: "Date",
-                accessor: "date"
+                accessor: "date",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Client Name",
                 accessor: "client_name",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Client Email",
                 accessor: "client_email",
+                style: { textAlign: "center" }
               },
               {
                 Header: "Total Amount",
-                accessor: "date",
+                accessor: "total",
+                style: { textAlign: "center" }
               },
               {
                 Header: "",
+                style: { textAlign: "center" },
                 Cell: row => (
                   <Link 
                     to={`/invoiceDetails/${data[row.index].invoice_id}`} 

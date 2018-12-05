@@ -56,17 +56,21 @@ class Product extends React.Component {
             columns={[
               {
                 Header: "ID",
-                accessor: "product_id"
+                accessor: "product_id",
+                style: { textAlign: "center" },
+                maxWidth: 100
               },
               {
                 Header: "Product Name",
                 accessor: "product_name",
-                Cell: this.renderEditable
+                Cell: this.renderEditable,
+                style: { textAlign: "center" }
               },
               {
                 Header: "Rate",
                 accessor: "price_per_unit",
-                Cell: this.renderEditable
+                Cell: this.renderEditable,
+                style: { textAlign: "center" }
               }
             ]}
             defaultPageSize={10}

@@ -8,4 +8,5 @@ export default (async function showResults(values) {
       console.log(res.data);
     });
   
+  window.location.replace('/products');
 });

@@ -56,22 +56,27 @@ class Client extends React.Component {
             columns={[
               {
                 Header: "ID",
-                accessor: "client_id"
+                accessor: "client_id",
+                style: { textAlign: "center" },
+                maxWidth: 100
               },
               {
                 Header: "Client Name",
                 accessor: "client_name",
-                Cell: this.renderEditable
+                Cell: this.renderEditable,
+                style: { textAlign: "center" }
               },
               {
                 Header: "Client Email",
                 accessor: "client_email",
-                Cell: this.renderEditable
+                Cell: this.renderEditable,
+                style: { textAlign: "center" }
               },
               {
                 Header: "Client Address",
                 accessor: "client_address",
-                Cell: this.renderEditable
+                Cell: this.renderEditable,
+                style: { textAlign: "center" }
               }
             ]}
             defaultPageSize={10}
