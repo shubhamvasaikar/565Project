@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+  max-height: 10%
+}
