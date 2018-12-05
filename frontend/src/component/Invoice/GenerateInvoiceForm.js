@@ -2,9 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Autocomplete from 'react-autocomplete';
 import axios from 'axios';
-import ClientAC from './ClientAC';
 import $ from 'jquery';
-import ProductAC from './ProductAC';
 
 class GenerateInvoiceForm extends React.Component {
   state = {
@@ -81,9 +79,9 @@ class GenerateInvoiceForm extends React.Component {
               }
               renderItem={(item, isHighlighted) => (
                 <div
-                  className={{ background: isHighlighted ? 'lightgray' : 'white' }}
+                  className="item"
                   key={item.client_id}
-                >{item.client_id + ' - ' + item.client_name}</div>
+                >{item.client_name}</div>
               )}
             />
             </div>
@@ -101,6 +99,8 @@ class GenerateInvoiceForm extends React.Component {
             </div>
           </div>
         </div>
+        <br />
+        <br />
         {
           products.map((val, idx) => {
             let productID = `product-${idx}`, quantityID = `quantity-${idx}`, cost = `cost-${idx}`

@@ -1,8 +1,15 @@
 .menu {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid #cccccc;
+  left: 89.7813px;
+  top: 258.141px;
+  min-width: 444.625px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 0px;
+  font-size: 90%;
+  position: fixed;
+  overflow: auto;
+  max-height: 50%;
 }
 
 .item {

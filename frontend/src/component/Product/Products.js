@@ -45,10 +45,12 @@ class Product extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <div style={{ padding: 15 }} className='row'>
-          <Link to='/addProduct' className="btn waves-effect waves-light">Add a new product</Link>
+        <div className='row'>
+          <div className="col s8">
+            <h2>Products</h2>
+          </div>
         </div>
-        <div style={{ padding: 15 }} className='row'>
+        <div className='row'>
           <ReactTable
             data={data}
             columns={[
@@ -71,6 +73,11 @@ class Product extends React.Component {
             className="-striped -highlight"
           />
           <br />
+        </div>
+        <div className="row">
+          <div>
+            <Link to='/addProduct' className="btn waves-effect waves-light">Add a new client</Link>
+          </div>
         </div>
       </div>
     );

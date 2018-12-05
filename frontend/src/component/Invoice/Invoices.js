@@ -23,7 +23,12 @@ class Invoice extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <div style={{ padding: 15 }} className='row'>
+        <div className='row'>
+          <div className="col s8">
+            <h2>Invoices</h2>
+          </div>
+        </div>
+        <div className='row'>
           <ReactTable
             data={data}
             columns={[
