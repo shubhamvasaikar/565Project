@@ -8,6 +8,8 @@ import AddClient from './Client/AddClient'
 import AddProductForm from './Product/AddProduct'
 import Product from './Product/Products';
 
+// Router to switch between individual components
+// of this single page application.
 const Main = () => (
     <main>
         <div className="container">

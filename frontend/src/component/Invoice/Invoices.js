@@ -6,6 +6,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import axios from "axios";
 
+// Component to display all invoices.
 class Invoice extends React.Component {
   constructor() {
     super();
@@ -29,6 +30,9 @@ class Invoice extends React.Component {
           </div>
         </div>
         <div className='row'>
+          {/* 
+            Note that ReactTable is not editable in this case.
+          */}
           <ReactTable
             data={data}
             filterable
@@ -63,6 +67,7 @@ class Invoice extends React.Component {
                 Header: "",
                 style: { textAlign: "center" },
                 Cell: row => (
+                  // View details of the invoice.
                   <Link 
                     to={`/invoiceDetails/${data[row.index].invoice_id}`} 
                     className="btn-small waves-effect waves-light"

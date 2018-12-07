@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// Function to send an XMLHttpRequest to the backend.
 export default (async function showResults(values) {
 
   axios.post('http://localhost:8000/addProduct', values)

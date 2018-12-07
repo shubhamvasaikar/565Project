@@ -4,7 +4,7 @@ import store from "./store";
 import showResults from "./showResults";
 import AddProductForm from "./AddProductForm";
 
-
+// Component to display form to add new product
 const AddProduct = () => {
     return (  <Provider store={store}>
     <div style={{ padding: 15 }}>

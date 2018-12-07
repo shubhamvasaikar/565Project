@@ -6,6 +6,8 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import axios from "axios";
 
+// Component to display and edit all products.
+// Similar to Client
 class Product extends React.Component {
   constructor() {
     super();

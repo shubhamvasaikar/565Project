@@ -6,6 +6,10 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import axios from "axios";
 
+// Component to show an editable table
+// to display all clients and perform
+// updates on the database in case user
+// edits the table.
 class Client extends React.Component {
   constructor() {
     super();
@@ -14,7 +18,10 @@ class Client extends React.Component {
     };
     this.renderEditable = this.renderEditable.bind(this);
   }
+  // Load data after the component is mounted in the tree
+  // and perform a re-render with the data.
   componentDidMount() {
+    // XMLHttpRequest to the backend to get client data.
     axios.get('http://localhost:8000/clients')
       .then(res => {
         console.log("res");
@@ -27,6 +34,8 @@ class Client extends React.Component {
         style={{ backgroundColor: "#fafafa" }}
         contentEditable
         suppressContentEditableWarning
+        // When the user edits a cell and goes out
+        // of focus, call the API to update client information.
         onBlur={e => {
           console.log("onBlur")
           const data = [...this.state.data];
@@ -51,6 +60,10 @@ class Client extends React.Component {
           </div>
         </div>
         <div className='row'>
+          {/* 
+            ReactTable component to display client details.
+            Table is filterable.
+          */}
           <ReactTable
             data={data}
             filterable

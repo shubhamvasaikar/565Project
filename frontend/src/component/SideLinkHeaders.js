@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../logo.svg';
 
+// Nav bar to show links to various
+// components of the app.
 const Header = () => (
     <header>
       <nav>

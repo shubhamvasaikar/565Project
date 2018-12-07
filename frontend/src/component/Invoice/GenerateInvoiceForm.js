@@ -4,6 +4,7 @@ import Autocomplete from 'react-autocomplete';
 import axios from 'axios';
 import $ from 'jquery';
 
+// The form to generate invoices.
 class GenerateInvoiceForm extends React.Component {
   state = {
     products: [{details:"", quantity:"", cost:""}],
@@ -15,29 +16,38 @@ class GenerateInvoiceForm extends React.Component {
     total: 0
   }
   componentDidMount() {
+    // Use good old JQuery to set today's date.
     $("#date").attr('value', this.state.date);
 
+    // Get all client data for autocomplete suggestions.
     axios.get('http://localhost:8000/clients')
       .then(res => {
         this.setState({ clientData: res.data });
       });
-    
+
+    // Get all product data for autocomplete suggestions.
     axios.get('http://localhost:8000/products')
     .then(res => {
       this.setState({ productData: res.data });
       });
   }
+  // Send entire state to backend for inserting new invoice in database.
+  // Could do with only sending the required objects.
   handleSubmit = (e) => {
     axios.post('http://localhost:8000/generateInvoice', this.state)
       // .then(res => {
       //   console.log(res);
       // })
   }
+  // When the user clicks the + button add a new object to the state
+  // which will then trigger a re-render and new fields will be added
+  // to the form.
   addProduct = (e) => { 
     e.preventDefault()
     const total = this.state.products.reduce((acc, product) => {
       return acc + parseFloat(product.cost)
     }, 0);
+    // Update the total when a new field is added.
     $("#total").attr('value', total);
     this.setState((prevState) => ({
         products: [...prevState.products, {details:"", quantity:0, cost:0}],
@@ -45,6 +55,8 @@ class GenerateInvoiceForm extends React.Component {
       })
     );
   }
+  // Populate all the form fields to their original value when a re-render
+  // is triggered
   handleChange = (e) => {
     if (["details", "quantity", "cost"].includes(e.target.className) ) {
       let products = [...this.state.products]
@@ -62,6 +74,10 @@ class GenerateInvoiceForm extends React.Component {
           <div className='col s8'>
             <label>Client Name</label>
             <div>
+            {/* 
+              Autocomplete component to provide autocomplete
+              suggestions to the user.
+            */}
             <Autocomplete
               value={this.state.clientACvalue}
               inputProps={{ id: 'client_name', name: 'client_name' }}
@@ -107,7 +123,12 @@ class GenerateInvoiceForm extends React.Component {
         <br />
         <br />
         {
+          // Map over each object in state.products.
+          // This way when a new object is added, a new field will
+          // also be rendered. Also populate all the previous fields
           products.map((val, idx) => {
+            // Generate a unique id for each field from the index we
+            // are currently on.
             let productID = `product-${idx}`, quantityID = `quantity-${idx}`, cost = `cost-${idx}`
             return (
             <div className="row" key={idx}>
@@ -185,6 +206,9 @@ class GenerateInvoiceForm extends React.Component {
             )
             })
           }
+        {/* 
+          Display the total.
+        */}
         <div className='row'>
           <div className="col s3 offset-s8">
             <label>Total</label>

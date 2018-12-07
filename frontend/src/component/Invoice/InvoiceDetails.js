@@ -2,11 +2,16 @@ import React from "react";
 import axios from 'axios';
 import ReactTable from 'react-table'
 
+// Class to display all the details of an invoice.
+// The url for this page looks like /invoiceDetails/<invoice_id>.
+// This invoice id is accessible in props.params and is sent to
+// the server as a JSON object to retrieve the details.
 class InvoiceDetails extends React.Component {
   state = {
     id: this.props.match.params.id,
     data: [{}]
   }
+  // Retrieve invoice details for specified id.
   componentDidMount() {
     console.log(this.state.id);
     axios.post('http://localhost:8000/invoiceDetails', 
@@ -21,6 +26,10 @@ class InvoiceDetails extends React.Component {
     let data = this.state.data
     return (
       <div style={{ padding: 15 }}>
+        {/* 
+          All details accessed via data[0] are the same for
+          all returned rows. Hence, display it only once.
+        */}
         <div className="row">
           <div className="col s4">
             <h5>Invoice ID: {data[0].invoice_id}</h5>
@@ -42,6 +51,9 @@ class InvoiceDetails extends React.Component {
             <p>Client Address: {data[0].client_address}</p>
           </div>
         </div>
+          {/* 
+            Display all products of an invoice in a ReactTable.
+          */}
           <ReactTable
             data={data}
             columns={[

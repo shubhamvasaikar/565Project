@@ -1,6 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+// Form to add a new product into the database.
+// Very similar to the Clients component.
+// handleSubmit is written in the showResults.js file.
 const AddProductForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
